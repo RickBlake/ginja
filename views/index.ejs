@@ -17,10 +17,14 @@
 
 </head>
 <body ng-app="AngularSFDemo">
-<div  class="navbar navbar-inverse navbar-fixed-top" ng-controller="LoginCtrl">
     <div class="navbar-inner">
         <div class="container">
             <a href="#"><img border="0" src="img/ginja.png" alt="ginja" height="32"></a>
+            <div class="btn-group" ng-controller="ButtonsCtrl">
+                <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'CallList'">Call List</button>
+                <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Map'">Map</button>
+            </div>
+          
             <div ng-show="isLoggedIn()" class="btn-group pull-right">
                 <a class="btn dropdown-toggle">
                     <i class="icon-wrench"></i>

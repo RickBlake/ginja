@@ -63,8 +63,6 @@ function LoginCtrl($scope, AngularForce, $location) {
         }
     };
 
-
-
     $scope.isLoggedIn = function () {
         return AngularForce.authenticated();
     };
@@ -77,6 +75,10 @@ function LoginCtrl($scope, AngularForce, $location) {
         });
     };
 }
+
+function ButtonsCtrl($scope) {
+    $scope.radioModel = 'CallList';
+};
 
 function CallbackCtrl($scope, AngularForce, $location) {
     AngularForce.oauthCallback(document.location.href);
@@ -92,7 +94,6 @@ function ContactListCtrl($scope, AngularForce, $location, Contact) {
     if (!AngularForce.authenticated()) {
         return $location.path('/home');
     }
-
     $scope.searchTerm = '';
     $scope.working = false;
 
