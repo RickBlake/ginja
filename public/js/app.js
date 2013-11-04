@@ -4,7 +4,7 @@
  *
  *  PS: This module is injected into ListCtrl, EditCtrl etc. controllers to further consume the object.
  */
-angular.module('Contact', []).factory('Contact', function (AngularForceObjectFactory) {
+angular.module('Contact', ["google-maps"]).factory('Contact', function (AngularForceObjectFactory) {
     //Describe the contact object
     var objDesc = {
         type: 'Contact',
@@ -14,9 +14,11 @@ angular.module('Contact', []).factory('Contact', function (AngularForceObjectFac
         limit: 20
     };
     var Contact = AngularForceObjectFactory(objDesc);
+   
 
     return Contact;
 });
+
 
 function HomeCtrl($scope, AngularForce, $location, $route) {
     var isOnline =  AngularForce.isOnline();
@@ -76,10 +78,6 @@ function LoginCtrl($scope, AngularForce, $location) {
     };
 }
 
-function ButtonsCtrl($scope) {
-    $scope.radioModel = 'CallList';
-};
-
 function CallbackCtrl($scope, AngularForce, $location) {
     AngularForce.oauthCallback(document.location.href);
 
@@ -88,6 +86,12 @@ function CallbackCtrl($scope, AngularForce, $location) {
     // and another from oauth)
     $location.hash('');
     $location.path('/contacts');
+}
+
+function HeaderController($scope, $location) { 
+    $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
 }
 
 function ContactListCtrl($scope, AngularForce, $location, Contact) {
@@ -209,3 +213,45 @@ function ContactDetailCtrl($scope, AngularForce, $location, $routeParams, Contac
         }
     }
 }
+
+function MapCtrl($scope){
+    $scope.message = "wicked good";
+    google.maps.visualRefresh = true;
+    $scope.center = {
+        latitude: 51.507222,
+        longitude: -0.1275,
+    };
+    $scope.zoom=8;
+    $scope.markClick = false;
+    
+}
+app.directive('resize', function ($window) {
+    return function (scope, element) {
+        scope.getWinWidth = function() {
+            return $window.innerWidth;
+        }
+        scope.getWinHeight = function() {
+            return $window.innerHeight;
+        }
+
+        var setNavWidth = function(newWidth) {
+            element.css('width', newWidth + 'px');
+        }
+        var setNavHeight = function(newHeight) {
+            element.css('width', newHeight + 'px');
+        }
+
+        // Set on load
+        scope.$watch(scope.getWinWidth, function (newValue, oldValue) {
+            setNavWidth(scope.getWinWidth() - 100);
+        }, true);
+        scope.$watch(scope.getWinHeight, function (newValue, oldValue) {
+            setNavWidth(scope.getWinHeight() - 100);
+        }, true);
+
+        // Set on resize
+        angular.element($window).bind('resize', function () {
+            scope.$apply();
+        });
+    };
+});

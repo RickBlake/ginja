@@ -1,1 +1,3 @@
 client_id='3MVG99qusVZJwhsnOqXs5_kLIhaXpvMf4mGnTxzQKdmiKcRLFoA9Kmyb32UpDxEnOPkwo8jhmNGGt8FI__hcR' app_url='http://localhost:3000/' node app.js
+
+<google-map center="center" zoom="zoom" refresh="isMapElementHidden"  style="height: 450px"></google-map>

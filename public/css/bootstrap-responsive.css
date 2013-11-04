@@ -980,11 +980,11 @@
     clear: both;
   }
   .nav-collapse .nav {
-    float: none;
+    float: left;
     margin: 0 0 10px;
   }
   .nav-collapse .nav > li {
-    float: none;
+    float: left;
   }
   .nav-collapse .nav > li > a {
     margin-bottom: 2px;
