@@ -112,14 +112,6 @@ function ContactListCtrl($scope, AngularForce, $location, Contact) {
         return $scope.working;
     };
 
-    $scope.doSearch = function () {
-        Contact.search($scope.searchTerm, function (data) {
-            $scope.contacts = data;
-            $scope.$apply();//Required coz sfdc uses jquery.ajax
-        }, function (data) {
-        });
-    };
-
     $scope.doView = function (contactId) {
         console.log('doView');
         $location.path('/view/' + contactId);

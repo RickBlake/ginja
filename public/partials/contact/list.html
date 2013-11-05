@@ -47,12 +47,11 @@
     <div class="visible-phone">
         <form class="form-inline">
             <input type="text" ng-model="searchTerm" class="input-medium search-query" placeholder="Search">
-            <button ng-click="doSearch(searchString)" class="btn btn-primary">Go</button>
             <button ng-click="doCreate()" class="btn btn-default">&nbsp;+&nbsp;</button>
         </form>
 
         <table class="table">
-            <tr ng-click="doView(contact.Id)" ng-repeat="contact in contacts">
+            <tr ng-click="doView(contact.Id)" ng-repeat="contact in contacts | filter: searchTerm">
                 <td> {{contact.FirstName}} {{contact.LastName}}
                     <br/>
                     <small><i>{{contact.Account.Name}}</i></small>
